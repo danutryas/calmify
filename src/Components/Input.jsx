@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useRef, useState } from "react";
 import { PasswordHide, PasswordShow } from "./Icons/Password";
 
-const Input = ({ label, type, link, textLink }) => {
+const Input = ({ label, type, link, textLink, onChange, name }) => {
   if (type === "password") {
     return (
       <div className="flex flex-col gap-3">
@@ -16,7 +16,7 @@ const Input = ({ label, type, link, textLink }) => {
             ""
           )}
         </div>
-        <PasswordInput />
+        <PasswordInput onChange={onChange} name={name} />
       </div>
     );
   } else if (type === "text") {
@@ -32,7 +32,7 @@ const Input = ({ label, type, link, textLink }) => {
             ""
           )}
         </div>
-        <TextInput label={label} />
+        <TextInput label={label} onChange={onChange} name={name} />
       </div>
     );
   } else if (type === "email") {
@@ -48,37 +48,41 @@ const Input = ({ label, type, link, textLink }) => {
             ""
           )}
         </div>
-        <EmailInput />
+        <EmailInput onChange={onChange} name={name} />
       </div>
     );
   }
 };
 
-const EmailInput = () => {
+const EmailInput = ({ onChange, name }) => {
   return (
-    <div className="rounded-xl border-grey-4 flex gap-4 border-2 px-4 py-3 justify-between focus-within:border-[#E0EFFE]  focus-within:border-4 focus-within:py-2.5 focus-within:px-3.5">
+    <div className="rounded-xl border-grey-4 flex gap-4 border-2 px-4 py-3 justify-between focus-within:border-[#E0EFFE]  focus-within:border-4 focus-within:py-[9.5px] focus-within:px-3.5">
       <input
         type="email"
         className="border-none outline-none w-full "
         placeholder="Enter your email"
+        onChange={(e) => onChange(e)}
+        name={name}
       />
     </div>
   );
 };
 
-const TextInput = ({ label }) => {
+const TextInput = ({ label, onChange, name }) => {
   return (
-    <div className="rounded-xl border-grey-4 flex gap-4 border-2 px-4 py-3 justify-between focus-within:border-[#E0EFFE] focus-within:border-4 focus-within:py-2.5 focus-within:px-3.5">
+    <div className="rounded-xl border-grey-4 flex gap-4 border-2 px-4 py-3 justify-between focus-within:border-[#E0EFFE] focus-within:border-4 focus-within:py-[9.5px] focus-within:px-3.5">
       <input
         type="text"
         className="border-none outline-none w-full "
         placeholder={`Enter your ${label}`}
+        onChange={(e) => onChange(e)}
+        name={name}
       />
     </div>
   );
 };
 
-const PasswordInput = ({}) => {
+const PasswordInput = ({ onChange, name }) => {
   const [isPasswordShow, setIsPasswordShow] = useState(false);
   const inputEl = useRef(null);
 
@@ -94,7 +98,7 @@ const PasswordInput = ({}) => {
 
   return (
     <div
-      className="rounded-xl border-grey-4 flex gap-4 border-2 px-4 py-3 justify-between focus-within:border-[#E0EFFE] focus-within:border-4 items-center focus-within:py-2.5 focus-within:px-3.5"
+      className="rounded-xl border-grey-4 flex gap-4 border-2 px-4 py-3 justify-between focus-within:border-[#E0EFFE] focus-within:border-4 items-center focus-within:py-[9.5px] focus-within:px-3.5"
       onClick={focusToChild}
     >
       <input
@@ -102,6 +106,8 @@ const PasswordInput = ({}) => {
         ref={inputEl}
         placeholder="Enter your password"
         className="border-none outline-none w-full"
+        onChange={(e) => onChange(e)}
+        name={name}
       />
       <div className="icon-container" onClick={onButtonClick}>
         {isPasswordShow ? <PasswordShow /> : <PasswordHide />}
@@ -115,6 +121,8 @@ Input.propTypes = {
   type: PropTypes.string,
   link: PropTypes.string,
   textLink: PropTypes.string,
+  onChange: PropTypes.func,
+  name: PropTypes.string,
 };
 
 export default Input;

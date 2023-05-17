@@ -1,27 +1,98 @@
+import { useEffect, useState } from "react";
 import Input from "./Input";
 
 function LoginPage() {
-  const onSubmitButton = () => {};
+  const [account, setAccount] = useState({ email: "", password: "" });
+  const [errorLogin, setErrorLogin] = useState({ error: false, errorMsg: "" });
+  const [validationState, setValidationState] = useState({
+    email: "",
+    password: "",
+  });
+  const onSubmitButton = () => {
+    validation(account.email, account.password);
+    if (validationState.email === "" && validationState.password === "") {
+      // validation complete
+    } else {
+      console.log(validationState);
+    }
+  };
+  const validation = (email, password) => {
+    if (!isValidEmail(email)) {
+      setValidationState((prev) => ({ ...prev, email: "Email is not Valid" }));
+    } else {
+      setValidationState((prev) => ({ ...prev, email: "" }));
+    }
+    if (!isValidPassword(password)) {
+      setValidationState((prev) => ({
+        ...prev,
+        password: "Password is not Valid",
+      }));
+    } else {
+      setValidationState((prev) => ({ ...prev, password: "" }));
+    }
+  };
+  const onChangeInput = (e) => {
+    setAccount((account) => ({ ...account, [e.target.name]: e.target.value }));
+  };
+
+  const isValidEmail = (email) => {
+    return /\S+@\S+\.\S+/.test(email);
+  };
+  const isValidPassword = (password) => {
+    return /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(password);
+  };
 
   return (
-    <div className="bg-[#F9F9FA] h-screen ">
-      <div className=" bg-white w-[640px] mx-auto  px-24 py-14 rounded-2xl flex flex-col gap-8 absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/4">
-        <div className="flex flex-col gap-2 ">
+    <div className="bg-[#F9F9FA] h-screen">
+      <div className=" bg-white w-[640px] mx-auto px-24 py-14 rounded-2xl flex flex-col gap-8 absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/4">
+        <div className="flex flex-col gap-2 items-center">
           <p className="text-grey-1">Welcome back</p>
           <h1 className="text-black-1 text-2xl font-bold">
             Login to your Account
           </h1>
         </div>
+        {errorLogin.error ? (
+          <div className="w-full bg-red-500 px-4 py-4 rounded-md transition slide-in ">
+            <p className="text-white font-bold">{errorLogin.errorMsg}</p>
+          </div>
+        ) : (
+          ""
+        )}
+
         <div className="flex flex-col gap-6">
-          <Input label={"Email"} type="email" />
-          <Input
-            label={"Password"}
-            type={"password"}
-            textLink="Forgot ?"
-            link="https://www.google.com"
-          />
+          <div className="flex flex-col gap-0.5">
+            <Input
+              label={"Email"}
+              type="email"
+              onChange={onChangeInput}
+              name="email"
+            />
+            {validationState.email !== "" ? (
+              <p className="text-red-500 text-xs">{validationState.email}</p>
+            ) : (
+              ""
+            )}
+          </div>
+          <div className="flex flex-col gap-0.5">
+            <Input
+              label={"Password"}
+              type={"password"}
+              textLink="Forgot ?"
+              link="https://www.google.com"
+              name="password"
+              onChange={onChangeInput}
+            />
+            {validationState.email !== "" ? (
+              <p className="text-red-500 text-xs">{validationState.password}</p>
+            ) : (
+              ""
+            )}
+          </div>
         </div>
-        <button className="w-full bg-[#2E2BA6] py-4 text-white rounded-xl font-bold box-shadow-blue">
+        <button
+          className="w-full bg-[#2E2BA6] py-4 text-white rounded-xl font-bold box-shadow-blue"
+          onClick={onSubmitButton}
+        >
           Login now
         </button>
         <div className="flex justify-center gap-3">
