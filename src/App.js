@@ -1,9 +1,16 @@
 import logo from "./logo.svg";
 import "./App.css";
 import Input from "./Components/Input";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import LoginPage from "./Components/login";
-import RegisterPage from "./Components/register";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  redirect,
+  Navigate,
+} from "react-router-dom";
+import LoginPage from "./Components/Auth/login";
+import RegisterUser from "./Components/Auth/registerUser";
+import RegisterDoctor from "./Components/Auth/registerDoctor";
 
 function App() {
   return (
@@ -12,7 +19,8 @@ function App() {
         <Routes>
           <Route path="/" />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/register/user" element={<RegisterUser />} />
+          <Route path="/register/doctor" element={<RegisterDoctor />} />
         </Routes>
       </Router>
     </div>
