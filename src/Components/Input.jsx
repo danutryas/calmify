@@ -78,7 +78,7 @@ const TextInput = ({ label }) => {
   );
 };
 
-const PasswordInput = ({}) => {
+const PasswordInput = ({ }) => {
   const [isPasswordShow, setIsPasswordShow] = useState(false);
   const inputEl = useRef(null);
 
