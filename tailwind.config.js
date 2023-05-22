@@ -30,7 +30,8 @@ module.exports = {
       },
       fontFamily: {
         main: ['PT Sans', "sans-serif"],
-        title: ['Changa One', "cursive"]
+        title: ['Changa One', "cursive"],
+        inter: ['Inter', "sans-serif"],
       }
     },
   },
