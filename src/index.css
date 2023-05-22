@@ -14,3 +14,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.mainButton {
+  @apply text-white text-2xl font-semibold py-5 px-16 rounded-md cursor-pointer hover:opacity-80 active:opacity-70 transition duration-300;
+}
+
+.floatContent {
+  @apply bg-white shadow-2xl h-auto rounded-3xl p-5 w-[22rem] flex gap-4;
+}
