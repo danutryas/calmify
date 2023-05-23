@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
-import { useRef, useState } from "react";
-import { PasswordHide, PasswordShow } from "./Icons/Password";
+import { useRef, useState, useEffect } from "react";
+import { PasswordHide, PasswordShow } from "./Assets/Icons/Password";
 import uploadPhoto from "./Assets/Image/upload-photo.png";
 
 const Input = ({ label, type, link, textLink, onChange, name }) => {
@@ -65,24 +65,26 @@ const Input = ({ label, type, link, textLink, onChange, name }) => {
             ""
           )}
         </div>
-        <FileInput />
+        <FileInput onChange={onChange} name={name}/>
       </div>
     );
   }
 };
-const FileInput = ({}) => {
+const FileInput = ({onChange,name}) => {
   return (
     <div className="w-full">
       <input
         type="file"
-        id="upload-photo"
+        id={`upload-photo-${name ? name : ""}`}
         className="opacity-0 absolute z-[-1]"
+        name={name}
+        onChange={(e) => onChange(e)}
       />
       <label
-        htmlFor="upload-photo"
+        htmlFor={`upload-photo-${name ? name : "" }`}
         className="w-full outline-dashed flex h-56 border-0 outline-2 outline-[#A3A3A3] rounded-lg flex-col justify-center items-center"
       >
-        <img src={uploadPhoto} alt="" />
+        <img src={uploadPhoto} alt="upload-photo" />
         <p>Drag & Drop atau Browse</p>
       </label>
     </div>

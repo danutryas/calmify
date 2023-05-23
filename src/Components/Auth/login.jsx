@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Input from "../Input";
-import axios from "../API/axios";
+// import axios from "../API/axios";
+import axios from "axios";
 
 function LoginPage() {
   const [account, setAccount] = useState({ email: "", password: "" });
@@ -13,11 +14,19 @@ function LoginPage() {
     validation(account.email, account.password);
     if (validationState.email === "" && validationState.password === "") {
       // validation complete
-      try {
-        axios.post("/login", JSON.stringify({ account })).then((response) => {
-          console.log(response);
-        });
-      } catch (e) {}
+      // try {
+      axios.post(
+        "https://f406-113-11-180-8.ngrok-free.app/api/login",
+        JSON.stringify({ account }),
+        { headers: { "Content-Type": "application/json" } }
+      );
+      // .then((response) => {
+      //   console.log(response);
+      // }
+      // );
+      // } catch (e) {
+      //   console.log(e)
+      // }
     } else {
       console.log(validationState);
     }
@@ -53,9 +62,9 @@ function LoginPage() {
     <div className="bg-[#F9F9FA] h-screen">
       <div className=" bg-white w-[640px] mx-auto px-24 py-14 rounded-2xl flex flex-col gap-8 absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/4">
         <div className="flex flex-col gap-2 items-center">
-          <p className="text-grey-1">Welcome back</p>
+          <p className="text-grey-1">Selamat Datang,</p>
           <h1 className="text-black-1 text-2xl font-bold">
-            Login to your Account
+            Masuk ke akun Anda
           </h1>
         </div>
         {errorLogin.error ? (
@@ -84,7 +93,7 @@ function LoginPage() {
             <Input
               label={"Password"}
               type={"password"}
-              textLink="Forgot ?"
+              textLink="Lupa Password?"
               link="https://www.google.com"
               name="password"
               onChange={onChangeInput}
@@ -100,12 +109,12 @@ function LoginPage() {
           className="w-full bg-[#2E2BA6] py-4 text-white rounded-xl font-bold box-shadow-blue"
           onClick={onSubmitButton}
         >
-          Login now
+          Masuk
         </button>
         <div className="flex justify-center gap-3">
-          <p>Don't Have An Account ? </p>
-          <a href="/register" className="text-[#2E2BA6]">
-            Sign Up
+          <p>Belum Punya Akun?</p>
+          <a href="/register/user" className="text-[#2E2BA6]">
+            Mendaftar
           </a>
         </div>
       </div>
