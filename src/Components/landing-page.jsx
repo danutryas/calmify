@@ -238,7 +238,6 @@ function LandingPage() {
     );
 }
 
-=======
 import Header from "./header";
 import Footer from "./footer";
 import {
@@ -475,5 +474,4 @@ function LandingPage() {
     );
 }
 
->>>>>>> main
 export default LandingPage;
