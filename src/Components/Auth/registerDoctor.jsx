@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import Input from "../Input";
+import { Link } from "react-router-dom";
 
 function RegisterDoctor() {
   const [account, setAccount] = useState({
@@ -16,10 +17,14 @@ function RegisterDoctor() {
   });
   const onSubmitButton = () => {
     validation(account.email, account.password);
-    // if (validationState.email === "" && validationState.password === "") {
-    //   // validation complete
-    // } else {
-    // }
+    if (isValidEmail(account.email) && isValidPassword(account.password)) {
+      // try {
+      //   axios.post("/register", JSON.stringify(account));
+      // } catch (e) {
+      //   console.error(e);
+      // }
+    } else {
+    }
   };
 
   const validation = (email, password) => {
@@ -48,8 +53,11 @@ function RegisterDoctor() {
     return /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password);
   };
   const fileInputHandler = (e) => {
-    setAccount((account) => ({ ...account, [e.target.name]: e.target.files[0] }));
-  }
+    setAccount((account) => ({
+      ...account,
+      [e.target.name]: e.target.files[0],
+    }));
+  };
 
   return (
     <div className="bg-[#F9F9FA] h-screen ">
@@ -57,14 +65,24 @@ function RegisterDoctor() {
         <div className="flex flex-col gap-2 items-center">
           <h1 className="text-black-1 text-2xl font-bold">Buat sebuah akun</h1>
         </div>
+        <div className="flex justify-center gap-6 text-[#5A5A5D]">
+          <Link
+            to="/register/user"
+            className="text-[#C6C6C6] hover:text-[#5A5A5D]"
+          >
+            Pengguna
+          </Link>
+          <p>|</p>
+          <Link>Psikolog</Link>
+        </div>
         <div className="flex flex-col gap-6">
+          <Input
+            type="text"
+            label="Name"
+            onChange={onChangeInput}
+            name="name"
+          />
           <div className="flex flex-col gap-0.5">
-            <Input
-              type="text"
-              label="Name"
-              onChange={onChangeInput}
-              name="name"
-            />
             <Input
               label={"Email"}
               type="email"
@@ -107,12 +125,12 @@ function RegisterDoctor() {
           className="w-full bg-[#2E2BA6] py-4 text-white rounded-xl font-bold box-shadow-blue"
           onClick={onSubmitButton}
         >
-          Create account
+          Buat Akun
         </button>
         <div className="flex justify-center gap-3">
           <p>Sudah Memiliki Akun ? </p>
           <a href="/login" className="text-[#2E2BA6]">
-            Masuk
+            Gabung
           </a>
         </div>
       </div>

@@ -1,19 +1,29 @@
 import { useRef, useState } from "react";
 import Input from "../Input";
 import { Link } from "react-router-dom";
+import axios from "../API/axios";
 
 function RegisterUser() {
-  const [account, setAccount] = useState({ email: "", password: "", name: "" ,role : "user"});
+  const [account, setAccount] = useState({
+    email: "",
+    password: "",
+    name: "",
+    role: "user",
+  });
   const [validationState, setValidationState] = useState({
     email: "",
     password: "",
   });
   const onSubmitButton = () => {
     validation(account.email, account.password);
-    // if (validationState.email === "" && validationState.password === "") {
-    //   // validation complete
-    // } else {
-    // }
+    if (isValidEmail(account.email) && isValidPassword(account.password)) {
+      // try {
+      //   axios.post("/register", JSON.stringify(account));
+      // } catch (e) {
+      //   console.error(e);
+      // }
+    } else {
+    }
   };
 
   const validation = (email, password) => {
@@ -48,14 +58,24 @@ function RegisterUser() {
         <div className="flex flex-col gap-2 items-center">
           <h1 className="text-black-1 text-2xl font-bold">Buat sebuah akun</h1>
         </div>
+        <div className="flex justify-center gap-6 text-[#5A5A5D]">
+          <Link>Pengguna</Link>
+          <p>|</p>
+          <Link
+            to="/register/psikolog"
+            className="text-[#C6C6C6] hover:text-[#5A5A5D]"
+          >
+            Psikolog
+          </Link>
+        </div>
         <div className="flex flex-col gap-6">
+          <Input
+            type="text"
+            label="Name"
+            onChange={onChangeInput}
+            name="name"
+          />
           <div className="flex flex-col gap-0.5">
-            <Input
-              type="text"
-              label="Name"
-              onChange={onChangeInput}
-              name="name"
-            />
             <Input
               label={"Email"}
               type="email"
@@ -82,20 +102,16 @@ function RegisterUser() {
             )}
           </div>
         </div>
-        <div className="flex gap-3 self-center items-center text-[#BEBEBF]">
-          <p >Become of Doctor</p>
-          <Link to="/register/doctor" className="text-[#007DFA] font-medium">Klik Me</Link>
-        </div>
         <button
           className="w-full bg-[#2E2BA6] py-4 text-white rounded-xl font-bold box-shadow-blue"
           onClick={onSubmitButton}
         >
-          Create account
+          Buat Akun
         </button>
         <div className="flex justify-center gap-3">
           <p className="text-[#BEBEBF]">Sudah Memiliki Akun ? </p>
           <a href="/login" className="text-[#2E2BA6] font-medium">
-            Masuk
+            Gabung
           </a>
         </div>
       </div>

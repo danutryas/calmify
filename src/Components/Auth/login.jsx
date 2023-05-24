@@ -10,28 +10,27 @@ function LoginPage() {
     email: "",
     password: "",
   });
-  const onSubmitButton = () => {
+  const onSubmitButton = async () => {
     validation(account.email, account.password);
-    if (validationState.email === "" && validationState.password === "") {
-      // validation complete
-      // try {
-      axios.post(
-        "https://f406-113-11-180-8.ngrok-free.app/api/login",
-        JSON.stringify({ account }),
-        { headers: { "Content-Type": "application/json" } }
-      );
-      // .then((response) => {
-      //   console.log(response);
-      // }
-      // );
-      // } catch (e) {
-      //   console.log(e)
-      // }
+
+    if (isValidEmail(account.email) && isValidPassword(account.password)) {
+      try {
+        axios
+          .post(
+            "https://f406-113-11-180-8.ngrok-free.app/api/login",
+            JSON.stringify({ account }),
+            { headers: { "Content-Type": "application/json" } }
+          )
+          .then((response) => {
+            console.log(response);
+          });
+      } catch (e) {
+        console.log(e);
+      }
     } else {
-      console.log(validationState);
+      console.log("test");
     }
   };
-
   const validation = (email, password) => {
     if (!isValidEmail(email)) {
       setValidationState((prev) => ({ ...prev, email: "Email is not valid" }));

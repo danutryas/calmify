@@ -65,24 +65,24 @@ const Input = ({ label, type, link, textLink, onChange, name }) => {
             ""
           )}
         </div>
-        <FileInput onChange={onChange} name={name}/>
+        <FileInput onChange={onChange} name={name} />
       </div>
     );
   }
 };
-const FileInput = ({onChange,name}) => {
+const FileInput = ({ onChange, name }) => {
   return (
-    <div className="w-full">
+    <div className="w-full ">
       <input
         type="file"
         id={`upload-photo-${name ? name : ""}`}
-        className="opacity-0 absolute z-[-1]"
+        className="opacity-0 absolute z-[-1] "
         name={name}
         onChange={(e) => onChange(e)}
       />
       <label
-        htmlFor={`upload-photo-${name ? name : "" }`}
-        className="w-full outline-dashed flex h-56 border-0 outline-2 outline-[#A3A3A3] rounded-lg flex-col justify-center items-center"
+        htmlFor={`upload-photo-${name ? name : ""}`}
+        className="w-full cursor-pointer outline-dashed flex h-56 border-0 outline-2 outline-[#A3A3A3] rounded-lg flex-col justify-center items-center"
       >
         <img src={uploadPhoto} alt="upload-photo" />
         <p>Drag & Drop atau Browse</p>
