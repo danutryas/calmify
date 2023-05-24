@@ -7,6 +7,7 @@ import RegisterPage from "./Components/register";
 import LandingPage from "./Components/landing-page";
 import Dashboard from "./Components/dashboard";
 import Article from "./Components/article";
+import CommunityPage from "./pages/community";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/landing-page" element={<LandingPage />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/article" element={<Article />} />
+          <Route path="/community" element={<CommunityPage />} />
         </Routes>
       </Router>
     </div>
