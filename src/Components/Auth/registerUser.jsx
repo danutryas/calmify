@@ -1,27 +1,44 @@
 import { useRef, useState } from "react";
 import Input from "../Input";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "../API/axios";
 
 function RegisterUser() {
+  const [isSuccessRegister, setIsSuccessRegister] = useState(false);
   const [account, setAccount] = useState({
     email: "",
     password: "",
     name: "",
-    role: "user",
+    role: "pengguna",
   });
   const [validationState, setValidationState] = useState({
     email: "",
     password: "",
   });
+
+  const navigate = useNavigate();
   const onSubmitButton = () => {
     validation(account.email, account.password);
+    const formData = new FormData();
     if (isValidEmail(account.email) && isValidPassword(account.password)) {
-      // try {
-      //   axios.post("/register", JSON.stringify(account));
-      // } catch (e) {
-      //   console.error(e);
-      // }
+      formData.append("email", account.email);
+      formData.append("password", account.password);
+      formData.append("name", account.name);
+      formData.append("role", account.role);
+      try {
+        axios.post("/register", formData).then((data) => {
+          if (data.data.message === "Berhasil registrasi") {
+            setIsSuccessRegister(true);
+            setTimeout(() => {
+              navigate("/login");
+            }, 2000);
+          } else {
+            console.log(data);
+          }
+        });
+      } catch (e) {
+        console.error(e);
+      }
     } else {
     }
   };
@@ -58,6 +75,15 @@ function RegisterUser() {
         <div className="flex flex-col gap-2 items-center">
           <h1 className="text-black-1 text-2xl font-bold">Buat sebuah akun</h1>
         </div>
+        {isSuccessRegister ? (
+          <div className="w-full bg-green-600 px-4 py-4 rounded-md transition slide-in ">
+            <p className="text-white font-bold text-center">
+              Berhasil Mendaftar. Akan dialihkan ke halaman login
+            </p>
+          </div>
+        ) : (
+          ""
+        )}
         <div className="flex justify-center gap-6 text-[#5A5A5D]">
           <Link>Pengguna</Link>
           <p>|</p>
