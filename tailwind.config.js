@@ -22,7 +22,17 @@ module.exports = {
           4: "#BDBDBD",
           5: "#E0E0E0",
         },
+        mainText: '#8887AE',
+        mainBlue: '#2E2BA6',
+        mainDark: '#272D3D',
+        mainYellow: '#F2994A',
+        mainPink: '#D23C8F'
       },
+      fontFamily: {
+        main: ['PT Sans', "sans-serif"],
+        title: ['Changa One', "cursive"],
+        inter: ['Inter', "sans-serif"],
+      }
     },
   },
   plugins: [],

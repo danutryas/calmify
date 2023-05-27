@@ -3,6 +3,8 @@
 @tailwind utilities;
 body {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -13,4 +15,12 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.mainButton {
+  @apply text-white text-2xl font-semibold py-5 px-16 rounded-md cursor-pointer hover:opacity-80 active:opacity-70 transition duration-300;
+}
+
+.floatContent {
+  @apply bg-white shadow-2xl h-auto rounded-3xl p-5 w-[22rem] flex gap-4;
 }
