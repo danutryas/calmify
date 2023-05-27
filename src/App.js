@@ -2,7 +2,6 @@ import logo from "./logo.svg";
 import "./App.css";
 import Input from "./Components/Input";
 
-
 import LandingPage from "./Components/landing-page";
 import Dashboard from "./Components/dashboard";
 import Article from "./Components/article";
@@ -23,7 +22,6 @@ import RegisterDoctor from "./Components/Auth/registerDoctor";
 import { useContext } from "react";
 import AuthContext from "./Components/Auth/Auth";
 
-
 function App() {
   const { auth } = useContext(AuthContext);
 
@@ -31,17 +29,17 @@ function App() {
     <div className="App">
       <Router>
         {/* {auth.isAuth ? (
-          <></>
+        <></>
         ) : (
           <Routes>
-            <Route path="/" />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register/user" element={<RegisterUser />} />
-            <Route path="/register/psikolog" element={<RegisterDoctor />} />
+          <Route path="/" />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register/user" element={<RegisterUser />} />
+          <Route path="/register/psikolog" element={<RegisterDoctor />} />
           </Routes>
         )} */}
         <Routes>
-          <Route path="/" />
+          <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/landing-page" element={<LandingPage />} />
           <Route path="/dashboard" element={<Dashboard />} />

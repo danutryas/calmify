@@ -26,19 +26,43 @@ export const AuthProvider = ({ children }) => {
       }
     });
   };
+  const getUserData = (token) => {
+    axios
+      .get("/user", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
+        setUser(response.data);
+      });
+  };
+  const userLogout = () => {
+    axios
+      .post("/logout", {
+        headers: { Authorization: `Bearer ${auth.access_token}` },
+      })
+      .then(() => {
+        localStorage.clear();
+      });
+  };
   const authStatus = () => {
     const accessToken = localStorage.getItem("AT");
     if (accessToken) {
       setAuth({ isAuth: true, access_token: accessToken });
+      getUserData(accessToken);
     }
   };
 
   useEffect(() => {
     authStatus();
   }, []);
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
 
   return (
-    <AuthContext.Provider value={{ auth, setAuth, userLogin }}>
+    <AuthContext.Provider
+      value={{ auth, setAuth, userLogin, user, userLogout }}
+    >
       {children}
     </AuthContext.Provider>
   );
