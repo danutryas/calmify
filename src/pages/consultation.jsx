@@ -1,5 +1,6 @@
-import ConselorCard from "../Components/conselorCard";
+import { ConselorCard, OtherConselorCard } from "../Components/conselorCard";
 import Header from "../Components/header";
+import Footer from "../Components/footer";
 
 const ConsultationPage = () => {
   return (
@@ -22,8 +23,8 @@ const ConsultationPage = () => {
           </h5>
         </div>
       </section>
-      <section className="py-20 px-28 bg-[#F4F5F7] flex flex-col gap-20">
-        <div className="flex flex-col gap-16">
+      <section className="  py-20 px-28 bg-[#F4F5F7] flex flex-col gap-20">
+        <div className="container flex flex-col gap-16 mx-auto">
           <div className="flex flex-col gap-2">
             <h3 className="font-bold text-3xl tracking-wide">
               Konselor Rekomendasi
@@ -41,9 +42,20 @@ const ConsultationPage = () => {
               <ConselorCard />
             </div>
           </div>
+          <div className="grid grid-cols-3 gap-x-9	gap-y-16 justify-items-center ">
+            <OtherConselorCard />
+            <OtherConselorCard />
+            <OtherConselorCard />
+            <OtherConselorCard />
+            <OtherConselorCard />
+            <OtherConselorCard />
+            <OtherConselorCard />
+            <OtherConselorCard />
+            <OtherConselorCard />
+          </div>
         </div>
-        <div className="flex flex-col gap-16"></div>
       </section>
+      <Footer />
     </>
   );
 };
