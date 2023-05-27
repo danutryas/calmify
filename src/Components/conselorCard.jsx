@@ -1,16 +1,19 @@
 import { ClipboardText, StarIcon } from "./Icons";
 
-export const ConselorCard = () => {
+export const ConselorCard = ({ name, imgSrc, specialization, id }) => {
   return (
     <div className="inline-block mx-4">
       <div className="p-7 bg-white flex flex-col gap-7 w-[577px] rounded-3xl">
         <div className="flex gap-7">
           <div className="">
-            {/* profile pict */}
-            <div className="rounded-full bg-red-950 h-[90px] w-[90px] m-4 pointer-events-none"></div>
+            <img
+              src={imgSrc}
+              alt="psikolog"
+              className="rounded-full h-[90px] w-[90px] m-4 pointer-events-none"
+            />
           </div>
           <div className="flex flex-col gap-4 w-auto min-w-0">
-            <h5 className="font-bold text-3xl">dr. Amelia Ratna</h5>
+            <h5 className="font-bold text-3xl">{name}</h5>
             <div className="flex gap-4">
               <div className="flex gap-2 items-center">
                 <div className="h-[40px] w-[40px] bg-[#FFE4ED] rounded-full flex justify-center items-center">
@@ -28,8 +31,7 @@ export const ConselorCard = () => {
               </div>
             </div>
             <p className="text-[#989B9E] text-xl truncate max-w-full">
-              Spesialisasi bipolar disorder, depresi, psikologi Spesialisasi
-              bipolar disorder, depresi, psikologi
+              {specialization}
             </p>
           </div>
         </div>
@@ -46,15 +48,19 @@ export const ConselorCard = () => {
   );
 };
 
-export const OtherConselorCard = () => {
+export const OtherConselorCard = ({ name, imgSrc, id }) => {
   return (
     <div className="w-max">
       <div className="px-16 py-9 bg-white flex flex-col gap-9 items-center rounded-3xl">
         <div className="flex flex-col gap-5 items-center">
-          {/* profile pict */}
-          <div className="rounded-full bg-red-950 h-[133px] w-[133px] m-4 pointer-events-none"></div>
+          {/* profile pict */}{" "}
+          <img
+            src={imgSrc}
+            alt="psikolog"
+            className="rounded-full h-[133px] w-[133px] m-4 pointer-events-none"
+          />
           <div className="flex flex-col gap-5 items-center">
-            <h5 className="font-bold text-3xl">dr. Amelia Ratna</h5>
+            <h5 className="font-bold text-3xl">{name}</h5>
             <div className="flex gap-4">
               <div className="flex gap-2 items-center">
                 <div className="h-[40px] w-[40px] bg-[#FFE4ED] rounded-full flex justify-center items-center">
