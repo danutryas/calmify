@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import Input from "../Input";
 import { Link } from "react-router-dom";
+import axios from "../API/axios";
 
 function RegisterDoctor() {
   const [account, setAccount] = useState({
@@ -17,12 +18,19 @@ function RegisterDoctor() {
   });
   const onSubmitButton = () => {
     validation(account.email, account.password);
+    const formData = new FormData();
     if (isValidEmail(account.email) && isValidPassword(account.password)) {
-      // try {
-      //   axios.post("/register", JSON.stringify(account));
-      // } catch (e) {
-      //   console.error(e);
-      // }
+      formData.append("email", account.email);
+      formData.append("password", account.password);
+      formData.append("name", account.name);
+      formData.append("role", account.role);
+      formData.append("ijazah", account.ijazah);
+      formData.append("sertifikasi", account.sertifikasi);
+      try {
+        axios.post("/register", formData);
+      } catch (e) {
+        console.error(e);
+      }
     } else {
     }
   };
