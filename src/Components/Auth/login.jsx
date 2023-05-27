@@ -1,34 +1,40 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Input from "../Input";
-// import axios from "../API/axios";
-import axios from "axios";
+import axios from "../API/axios";
+import { useNavigate } from "react-router-dom";
+import { reject } from "q";
+import AuthContext from "./Auth";
 
 function LoginPage() {
+  const navigate = useNavigate();
   const [account, setAccount] = useState({ email: "", password: "" });
   const [errorLogin, setErrorLogin] = useState({ error: false, errorMsg: "" });
+  const [successLogin, setSuccessLogin] = useState(false);
   const [validationState, setValidationState] = useState({
     email: "",
     password: "",
   });
+  const { userLogin } = useContext(AuthContext);
+
   const onSubmitButton = async () => {
     validation(account.email, account.password);
-
     if (isValidEmail(account.email) && isValidPassword(account.password)) {
-      try {
-        axios
-          .post(
-            "https://f406-113-11-180-8.ngrok-free.app/api/login",
-            JSON.stringify({ account }),
-            { headers: { "Content-Type": "application/json" } }
-          )
-          .then((response) => {
-            console.log(response);
-          });
-      } catch (e) {
-        console.log(e);
-      }
-    } else {
-      console.log("test");
+      userLogin(account);
+      // try {
+      //   // axios.post("/login", formData).then((response) => {
+      //   //   console.log(response.data);
+      //   //   if (response.data.access_token) {
+      //   //     localStorage.setItem("AT", response.data.access_token);
+      //   //     setSuccessLogin(true);
+      //   //     setErrorLogin({ error: false, errorMsg: "" });
+      //   //     setTimeout(() => {
+      //   //       navigate("/");
+      //   //     }, 2000);
+      //   //   }
+      //   // });
+      // } catch (err) {
+      //   console.error(err);
+      // }
     }
   };
   const validation = (email, password) => {
@@ -73,7 +79,15 @@ function LoginPage() {
         ) : (
           ""
         )}
-
+        {successLogin ? (
+          <div className="w-full bg-green-600 px-4 py-4 rounded-md transition slide-in ">
+            <p className="text-white font-bold text-center">
+              Berhasil Masuk. Akan dialihkan ke halaman utama
+            </p>
+          </div>
+        ) : (
+          ""
+        )}
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-0.5">
             <Input
