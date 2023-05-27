@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { CommentIcon, LikeIcon } from "./Icons";
 import WaveIcon from "./Icons/WaveIcon.png";
+import { Link } from "react-router-dom";
 
 const Post = () => {
   const [isLiked, setIsLiked] = useState(false);
@@ -41,10 +42,10 @@ const Post = () => {
           </div>
           <p className="text-xl text-[#000000B2]">187 Likes</p>
         </div>
-        <div className="flex gap-4 items-center">
+        <Link to="/post" className="flex gap-4 items-center">
           <CommentIcon />
           <p className="text-xl text-[#000000B2]">24 Comments</p>
-        </div>
+        </Link>
       </div>
     </div>
   );
