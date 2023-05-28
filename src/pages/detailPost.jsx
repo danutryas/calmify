@@ -11,6 +11,7 @@ import { ImageIcon, MessageIcon, SendIcon } from "../Components/Icons";
 import Post from "../Components/post";
 import CommentElement from "../Components/comment";
 import Footer from "../Components/footer";
+import { useNavigate } from "react-router";
 
 const DetailPostPage = () => {
   const [isLiked, setIsLiked] = useState(false);
@@ -18,6 +19,11 @@ const DetailPostPage = () => {
   const likePost = () => {
     setIsLiked((prev) => !prev);
     // send to backend
+  };
+  const navigate = useNavigate();
+
+  const NavigationContol = (url) => {
+    navigate(url);
   };
   const textAreaEl = useRef(null);
 
@@ -31,13 +37,12 @@ const DetailPostPage = () => {
     textAreaEl.current.focus();
   };
 
-  const onClickBack = () => {};
   return (
     <div className="bg-[#F4F5F7]">
       <div className="px-16 py-8  bg-white w-full h-auto mb-10">
         <div
           className="w-[72px] h-[72px] cursor-pointer flex justify-center items-center"
-          onClick={onClickBack}
+          onClick={() => NavigationContol(-1)}
         >
           <BackIcon />
         </div>

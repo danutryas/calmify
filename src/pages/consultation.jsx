@@ -1,8 +1,21 @@
 import { ConselorCard, OtherConselorCard } from "../Components/conselorCard";
 import Header from "../Components/header";
 import Footer from "../Components/footer";
+import { useContext, useEffect } from "react";
+import PsikologContext from "../Components/Context/psikologContext";
+import AuthContext from "../Components/Context/Auth";
 
 const ConsultationPage = () => {
+  const { psikolog } = useContext(PsikologContext);
+  useEffect(() => {
+    console.log(psikolog);
+  }, [psikolog]);
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+    });
+  }, []);
   return (
     <>
       <Header />
@@ -36,22 +49,61 @@ const ConsultationPage = () => {
           </div>
           <div className="w-full">
             <div className="scroll-smooth whitespace-nowrap overflow-x-scroll pb-4">
-              <ConselorCard />
-              <ConselorCard />
-              <ConselorCard />
-              <ConselorCard />
+              {psikolog
+                ? psikolog.map((psikolog, index) => (
+                    <ConselorCard
+                      key={index}
+                      name={psikolog.name}
+                      imgSrc={psikolog.profile_photo_url}
+                      specialization={psikolog.spesialisasi}
+                      id={psikolog.id}
+                    />
+                  ))
+                : ""}
+              {psikolog
+                ? psikolog.map((psikolog, index) => (
+                    <ConselorCard
+                      key={index}
+                      name={psikolog.name}
+                      imgSrc={psikolog.profile_photo_url}
+                      specialization={psikolog.spesialisasi}
+                      id={psikolog.id}
+                    />
+                  ))
+                : ""}
             </div>
           </div>
           <div className="grid grid-cols-3 gap-x-9	gap-y-16 justify-items-center ">
-            <OtherConselorCard />
-            <OtherConselorCard />
-            <OtherConselorCard />
-            <OtherConselorCard />
-            <OtherConselorCard />
-            <OtherConselorCard />
-            <OtherConselorCard />
-            <OtherConselorCard />
-            <OtherConselorCard />
+            {psikolog
+              ? psikolog.map((psikolog, index) => (
+                  <OtherConselorCard
+                    key={index}
+                    name={psikolog.name}
+                    imgSrc={psikolog.profile_photo_url}
+                    id={psikolog.id}
+                  />
+                ))
+              : ""}
+            {psikolog
+              ? psikolog.map((psikolog, index) => (
+                  <OtherConselorCard
+                    key={index}
+                    name={psikolog.name}
+                    imgSrc={psikolog.profile_photo_url}
+                    id={psikolog.id}
+                  />
+                ))
+              : ""}
+            {psikolog
+              ? psikolog.map((psikolog, index) => (
+                  <OtherConselorCard
+                    key={index}
+                    name={psikolog.name}
+                    imgSrc={psikolog.profile_photo_url}
+                    id={psikolog.id}
+                  />
+                ))
+              : ""}
           </div>
         </div>
       </section>

@@ -3,7 +3,7 @@ import { useRef, useState, useEffect } from "react";
 import { PasswordHide, PasswordShow } from "./Assets/Icons/Password";
 import uploadPhoto from "./Assets/Image/upload-photo.png";
 
-const Input = ({ label, type, link, textLink, onChange, name }) => {
+const Input = ({ label, type, link, textLink, onChange, name, value }) => {
   if (type === "password") {
     return (
       <div className="flex flex-col gap-3">
@@ -33,7 +33,12 @@ const Input = ({ label, type, link, textLink, onChange, name }) => {
             ""
           )}
         </div>
-        <TextInput label={label} onChange={onChange} name={name} />
+        <TextInput
+          label={label}
+          onChange={onChange}
+          name={name}
+          value={value}
+        />
       </div>
     );
   } else if (type === "email") {
@@ -49,7 +54,7 @@ const Input = ({ label, type, link, textLink, onChange, name }) => {
             ""
           )}
         </div>
-        <EmailInput onChange={onChange} name={name} />
+        <EmailInput onChange={onChange} name={name} value={value} />
       </div>
     );
   } else if (type === "file") {
@@ -90,7 +95,7 @@ const FileInput = ({ onChange, name }) => {
     </div>
   );
 };
-const EmailInput = ({ onChange, name }) => {
+const EmailInput = ({ onChange, name, value }) => {
   return (
     <div className="rounded-xl border-grey-4 flex gap-4 border-2 px-4 py-3 justify-between focus-within:border-[#E0EFFE]  focus-within:border-4 focus-within:py-[9.5px] focus-within:px-3.5">
       <input
@@ -99,12 +104,13 @@ const EmailInput = ({ onChange, name }) => {
         placeholder="Enter your email"
         onChange={(e) => onChange(e)}
         name={name}
+        value={value}
       />
     </div>
   );
 };
 
-const TextInput = ({ label, onChange, name }) => {
+const TextInput = ({ label, onChange, name, value }) => {
   return (
     <div className="rounded-xl border-grey-4 flex gap-4 border-2 px-4 py-3 justify-between focus-within:border-[#E0EFFE] focus-within:border-4 focus-within:py-[9.5px] focus-within:px-3.5">
       <input
@@ -113,6 +119,7 @@ const TextInput = ({ label, onChange, name }) => {
         placeholder={`Enter your ${label}`}
         onChange={(e) => onChange(e)}
         name={name}
+        value={value}
       />
     </div>
   );

@@ -3,7 +3,7 @@ import Input from "../Input";
 import axios from "../API/axios";
 import { useNavigate } from "react-router-dom";
 import { reject } from "q";
-import AuthContext from "./Auth";
+import AuthContext from "../Context/Auth";
 
 function LoginPage() {
   const navigate = useNavigate();
