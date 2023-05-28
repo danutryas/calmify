@@ -51,16 +51,15 @@ export const ConselorCard = ({ name, imgSrc, specialization, id }) => {
 export const OtherConselorCard = ({ name, imgSrc, id }) => {
   return (
     <div className="w-max">
-      <div className="px-16 py-9 bg-white flex flex-col gap-9 items-center rounded-3xl">
+      <div className="px-16 py-9 bg-white flex flex-col gap-9 items-center rounded-3xl w-[425px]">
         <div className="flex flex-col gap-5 items-center">
-          {/* profile pict */}{" "}
           <img
             src={imgSrc}
             alt="psikolog"
             className="rounded-full h-[133px] w-[133px] m-4 pointer-events-none"
           />
           <div className="flex flex-col gap-5 items-center">
-            <h5 className="font-bold text-3xl">{name}</h5>
+            <h5 className="font-bold text-3xl text-center">{name}</h5>
             <div className="flex gap-4">
               <div className="flex gap-2 items-center">
                 <div className="h-[40px] w-[40px] bg-[#FFE4ED] rounded-full flex justify-center items-center">

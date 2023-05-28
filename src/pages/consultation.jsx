@@ -50,8 +50,9 @@ const ConsultationPage = () => {
           <div className="w-full">
             <div className="scroll-smooth whitespace-nowrap overflow-x-scroll pb-4">
               {psikolog
-                ? psikolog.map((psikolog) => (
+                ? psikolog.map((psikolog, index) => (
                     <ConselorCard
+                      key={index}
                       name={psikolog.name}
                       imgSrc={psikolog.profile_photo_url}
                       specialization={psikolog.spesialisasi}
@@ -60,8 +61,9 @@ const ConsultationPage = () => {
                   ))
                 : ""}
               {psikolog
-                ? psikolog.map((psikolog) => (
+                ? psikolog.map((psikolog, index) => (
                     <ConselorCard
+                      key={index}
                       name={psikolog.name}
                       imgSrc={psikolog.profile_photo_url}
                       specialization={psikolog.spesialisasi}
@@ -73,8 +75,9 @@ const ConsultationPage = () => {
           </div>
           <div className="grid grid-cols-3 gap-x-9	gap-y-16 justify-items-center ">
             {psikolog
-              ? psikolog.map((psikolog) => (
+              ? psikolog.map((psikolog, index) => (
                   <OtherConselorCard
+                    key={index}
                     name={psikolog.name}
                     imgSrc={psikolog.profile_photo_url}
                     id={psikolog.id}
@@ -82,8 +85,9 @@ const ConsultationPage = () => {
                 ))
               : ""}
             {psikolog
-              ? psikolog.map((psikolog) => (
+              ? psikolog.map((psikolog, index) => (
                   <OtherConselorCard
+                    key={index}
                     name={psikolog.name}
                     imgSrc={psikolog.profile_photo_url}
                     id={psikolog.id}
@@ -91,8 +95,9 @@ const ConsultationPage = () => {
                 ))
               : ""}
             {psikolog
-              ? psikolog.map((psikolog) => (
+              ? psikolog.map((psikolog, index) => (
                   <OtherConselorCard
+                    key={index}
                     name={psikolog.name}
                     imgSrc={psikolog.profile_photo_url}
                     id={psikolog.id}

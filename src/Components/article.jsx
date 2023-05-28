@@ -1,38 +1,30 @@
-import Header from "./header";
-import Footer from "./footer";
-import { useEffect } from "react";
-
-function Article() {
-  useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-    });
-  }, []);
+const Article = ({ data }) => {
   return (
-    <div className="font-main">
-      <Header />
-
-      <section id="title">
-        <div className="container text-mainText bg-white text-lg mx-auto text-center p-10 flex flex-col gap-10 items-center mb-10">
-          <h4 className="text-xl font-bold">Mindfulness Hub</h4>
-          <h2 className="text-6xl font-title text-mainDark">Article</h2>
-          <h2 className="text-6xl font-title text-[#000] px-56">
-            Bersama Dalam Dukungan, Menguatkan Jiwa
-          </h2>
-          <h5 className="text-xl text-mainDark px-56">
-            Temukan ketenangan dan keseimbangan dalam hidup Anda. Dapatkan akses
-            mudah ke beragam sumber daya dan latihan mindfulness yang membantu
-            Anda meningkatkan kesadaran diri, mengurangi stres, dan meningkatkan
-            kesejahteraan secara keseluruhan. Nikmati meditasi terpandu, latihan
-            pernapasan, dan teknik mindfulness lainnya di Mindfulness Hub.
-          </h5>
+    <div className="flex flex-col w-[403px] h-auto px-5 py-8 gap-8 bg-white rounded-2xl cursor-pointer box-shadow-white">
+      <div className="max-w-[365px] max-h-[365px] object-fill">
+        <img src={data.data[0].imgUrl} alt="" className="rounded-md" />
+      </div>
+      <div className="flex flex-col justify-between h-[265px]">
+        <div className="flex flex-col gap-4">
+          <h3 className="font-bold text-3xl font-main">{data.data[0].title}</h3>
+          <p className="text-lg ">{data.data[0].description}</p>
         </div>
-      </section>
-
-      <Footer />
+        <div className="flex gap-5 items-center">
+          <div className="">
+            <img
+              src={data.data[0].users.profile_photo_url}
+              alt=""
+              className="rounded-full"
+            />
+          </div>
+          <div className="flex flex-col ">
+            <p>by {data.data[0].users.name} </p>
+            <p className="font-bold text-[#4D4D4D80]">{data.readTime}</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
-}
+};
 
 export default Article;
