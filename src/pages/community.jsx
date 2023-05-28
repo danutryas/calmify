@@ -2,8 +2,15 @@ import Footer from "../Components/footer";
 import Header from "../Components/header";
 import Post from "../Components/post";
 import CreatePost from "../Components/createPost";
+import { useEffect } from "react";
 
 const CommunityPage = () => {
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+    });
+  }, []);
   return (
     <>
       <Header />

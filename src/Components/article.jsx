@@ -1,7 +1,14 @@
 import Header from "./header";
 import Footer from "./footer";
+import { useEffect } from "react";
 
 function Article() {
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+    });
+  }, []);
   return (
     <div className="font-main">
       <Header />

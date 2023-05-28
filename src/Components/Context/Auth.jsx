@@ -55,9 +55,6 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     authStatus();
   }, []);
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
 
   return (
     <AuthContext.Provider

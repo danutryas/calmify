@@ -16,8 +16,21 @@ import {
   ArticleImg,
   Rainbow,
 } from "../img/index";
+import { useNavigate } from "react-router";
+import { useEffect } from "react";
 
 function LandingPage() {
+  const navigate = useNavigate();
+
+  const NavigationContol = (url) => {
+    navigate(url);
+  };
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+    });
+  }, []);
   return (
     <div className="bg-white font-main">
       <Header />
@@ -46,12 +59,14 @@ function LandingPage() {
               <button
                 type="button"
                 className="bg-mainBlue shadow-xl shadow-mainBlue/50 mainButton"
+                onClick={() => NavigationContol("/article")}
               >
                 Article
               </button>
               <button
                 type="button"
                 className="bg-mainYellow shadow-xl shadow-mainYellow/50 mainButton"
+                onClick={() => NavigationContol("/consultation")}
               >
                 Consultation
               </button>
@@ -206,6 +221,7 @@ function LandingPage() {
               <button
                 type="button"
                 className="bg-mainYellow shadow-xl shadow-mainYellow/50 mainButton"
+                onClick={() => NavigationContol("/community")}
               >
                 Start Now
               </button>
@@ -322,6 +338,7 @@ function LandingPage() {
                 <button
                   type="button"
                   className="bg-mainBlue shadow-xl shadow-mainBlue/50 mainButton"
+                  onClick={() => NavigationContol("/article")}
                 >
                   All Posts <span className="w-96">➔</span>
                 </button>
@@ -353,6 +370,7 @@ function LandingPage() {
               <button
                 type="button"
                 className="bg-mainYellow shadow-xl shadow-mainYellow/50 mainButton"
+                onClick={() => NavigationContol("/consultation")}
               >
                 Lihat Konsultan
               </button>
