@@ -22,6 +22,7 @@ import RegisterDoctor from "./Components/Auth/registerDoctor";
 import { useContext } from "react";
 import AuthContext from "./Components/Auth/Auth";
 import DetailArticle from "./Components/detail-article";
+import AboutDoctor from "./Components/aboutDoctor";
 
 function App() {
   const { auth } = useContext(AuthContext);
@@ -51,6 +52,7 @@ function App() {
           <Route path="/register/user" element={<RegisterUser />} />
           <Route path="/register/psikolog" element={<RegisterDoctor />} />
           <Route path="/detail-article" element={<DetailArticle />} />
+          <Route path="/consultation/aboutDoctor" element={<AboutDoctor />} />
         </Routes>
       </Router>
     </div>
