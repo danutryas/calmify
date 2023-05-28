@@ -4,7 +4,6 @@ import Input from "./Components/Input";
 
 import LandingPage from "./Components/landing-page";
 import Dashboard from "./Components/dashboard";
-import Article from "./Components/article";
 import CommunityPage from "./pages/community";
 import DetailPostPage from "./pages/detailPost";
 import ConsultationPage from "./pages/consultation";
@@ -24,6 +23,7 @@ import AuthContext from "./Components/Context/Auth";
 import Notification from "./Components/Profile/notification";
 import SettingProfile from "./Components/Profile/settings";
 import ChangeProfile from "./Components/Profile/changeProfile";
+import ArticlePage from "./pages/article";
 
 function App() {
   const { auth } = useContext(AuthContext);
@@ -46,7 +46,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/landing-page" element={<LandingPage />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/article" element={<Article />} />
+          <Route path="/article" element={<ArticlePage />} />
           <Route path="/community" element={<CommunityPage />} />
           <Route path="/community/post" element={<DetailPostPage />} />
           <Route path="/consultation" element={<ConsultationPage />} />
