@@ -22,3 +22,19 @@ code {
 .floatContent {
   @apply bg-white shadow-2xl h-auto rounded-3xl p-5 w-[22rem] flex gap-4;
 }
+
+#pagination .left{
+    width: 0.5em;
+    height: 0.5em;
+    border-left: 0.1em solid #5B5B5B;
+    border-bottom: 0.1em solid #5B5B5B;
+    transform: rotate(45deg);
+}
+
+#pagination .right {
+    width: 0.5em;
+    height: 0.5em;
+    border-right: 0.1em solid #5B5B5B;
+    border-top: 0.1em solid #5B5B5B;
+    transform: rotate(45deg);
+}
